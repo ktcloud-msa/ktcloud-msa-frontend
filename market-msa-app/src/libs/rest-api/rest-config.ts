@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { notifyUnauthorized } from '@libs/auth-events';
+import { getApiGatewayEndpoint } from '@libs/runtime-config';
 import { useAuthStore } from '@store/useAuthStore';
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_GATEWAY_ENDPOINT,
+  baseURL: getApiGatewayEndpoint(),
   timeout: 5000,
   headers: { 'Content-Type': 'application/json' },
 });
