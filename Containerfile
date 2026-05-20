@@ -1,6 +1,3 @@
-# syntax=docker/dockerfile:1
-
-# ---- Build stage ----
 FROM node:24.15.0-alpine AS build
 WORKDIR /app
 
@@ -10,7 +7,6 @@ RUN npm ci
 COPY market-msa-app/ ./
 RUN npm run build
 
-# ---- Deploy stage ----
 FROM nginx:alpine AS deploy
 
 COPY --from=build /app/dist /usr/share/nginx/html
